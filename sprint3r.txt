@@ -1,0 +1,96 @@
+# Load required packages
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(stats)
+library(broom)
+
+#read in data
+socialMedia <- read.csv("smmh_1.csv")
+
+hist(socialMedia$Depression_Scores, 
+     main="Histogram of Depression Scores", 
+     xlab="Depression Scores", 
+     col="blue", 
+     border="black")
+library(ggplot2)
+
+
+ggplot(socialMedia, aes(x=Depression_Scores)) +
+  geom_histogram(binwidth=1, fill="blue", color="black") +
+  ggtitle("Histogram of Depression Scores") +
+  xlab("Depression Scores") +
+  ylab("Frequency")
+
+ggplot(socialMedia, aes(x=average_time)) +
+  geom_histogram(binwidth = 0.5,  # Set binwidth depending on your data range and distribution
+                 fill = "blue", 
+                 color = "black") +
+  ggtitle("Histogram of Average Time Spent on Social Media") +
+  xlab("Average Time (hours)") +
+  ylab("Frequency") +
+  theme_minimal()  # Applies a minimal theme for a clean look
+
+test_result <- cor.test(socialMedia$average_time, socialMedia$Depression_Scores, method = "pearson")
+print(test_result)
+
+# Create usage time categories
+socialMedia <- socialMedia %>%
+  mutate(usage_tier = case_when(
+    average_time < 2 ~ "0-2 hours",
+    average_time >= 2 & average_time < 4 ~ "2-4 hours",
+    average_time >= 4 & average_time < 6 ~ "4-6 hours",
+    average_time >= 6 ~ "6+ hours",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(usage_tier))  # Remove rows with NA in usage_tier
+
+# Order the tiers
+socialMedia$usage_tier <- factor(socialMedia$usage_tier, 
+                                 levels = c("0-2 hours", "2-4 hours", "4-6 hours", "6+ hours"))
+
+# Create boxplot
+ggplot(socialMedia, aes(x = usage_tier, y = Depression_Scores, fill = usage_tier)) +
+  geom_boxplot() +
+  ggtitle("Depression Scores by Social Media Usage Time") +
+  xlab("Daily Social Media Usage Time") +
+  ylab("Depression Scores") +
+  scale_fill_brewer(palette = "Blues") +
+  theme_minimal() +
+  theme(legend.position = "none")  # Remove legend since x-axis labels are clear
+
+# Basic demographics
+summary(socialMedia$Age)
+table(socialMedia$Gender)
+
+# Social media usage patterns
+summary(socialMedia$Avg_Time_Spent)
+describe(socialMedia %>% select(Purposeless_Usage, Distraction_Level, Social_Comparison))
+
+# Mental health metrics
+summary(socialMedia$Depression_Score)
+describe(socialMedia %>% select(Distractibility, Worry_Level, Concentration_Difficulty))
+
+ggplot(socialMedia, aes(x = Depression_Scores)) +
+  geom_histogram(bins = 5, fill = "skyblue", color = "black") +
+  labs(title = "Distribution of Depression Scores",
+       x = "Depression Score (1-5)",
+       y = "Frequency") +
+  theme_minimal()
+
+ggplot(socialMedia, aes(x = average_time, y = Depression_Scores)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Time Spent on Social Media vs Depression",
+       x = "Average Time Spent (Hours)",
+       y = "Depression Score") +
+  theme_minimal()
+
+df <- df %>%
+  mutate(Age_Group = cut(Age, 
+                         breaks = c(10, 20, 30, 40, 50, 100),
+                         labels = c("Teens", "20s", "30s", "40s", "50+")))
+
+model1 <- lm(Depression_Scores ~ average_time, data = socialMedia)
+summary(model1)
+tidy(model1)  # Clean coefficient output
