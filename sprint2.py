@@ -1,4 +1,5 @@
 import pandas as pd
+import seaborn as sns
 
 # Load the data
 data = pd.read_csv('smmh.csv')
@@ -75,4 +76,11 @@ rmses = [rmse_lr, rmse_dt]
 plt.bar(models, rmses, color=['blue', 'green'])
 plt.ylabel('RMSE')
 plt.title('Comparison of Model Performance')
+plt.show()
+
+plt.figure(figsize=(8, 5))
+sns.histplot(data['Depression_Score'], bins=5, kde=True)
+plt.title("Distribution of Depression Scores")
+plt.xlabel("Depression Score (1-5)")
+plt.ylabel("Frequency")
 plt.show()
