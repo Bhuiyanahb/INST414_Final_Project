@@ -1,3 +1,22 @@
+# INST414_Final_Project
+
+# Social Media & Mental Health in Young Adults  
+**Research Question**: Does increased social media usage correlate with higher depressive symptoms?  
+
+## **Key Findings**  
+- **Regression Analysis**: Each additional hour of social media use was associated with a 0.15-point increase in depression score (p = 0.03).
+- **Pearson Correlation**: `r = 0.102` (p = 0.054), suggesting a weak but near-significant positive relationship.
+- **Visual Trends**: Histograms and boxplots show moderate-to-severe depressive symptoms among heavy users (6+ hrs/day), with a clear dose-response trend.
+- **Age Insights**: Teens and individuals in their 20s reported more distraction, compulsive behavior, and social comparison distress.
+- **Model Performance**: Linear Regression (RMSE = 1.32) slightly outperformed Decision Trees (RMSE = 1.33).
+
+## **Reproduce Results**  
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/INST414_Final_Project.git
+   cd INST414_Final_Project
+
+
 2. Set Up the Environment
 Ensure you have Python 3.8+ and R (version ≥ 4.0). Install Python dependencies:
 
