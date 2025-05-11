@@ -40,7 +40,7 @@ Use the notebooks in notebooks/ or R scripts in src/visualization/ to:
 - Generate boxplots, histograms, and scatterplots
 
 ## **Project Structure**
-###Directory Structure and Purpose
+### Directory Structure and Purpose
 1. data/
 ####Contents: 
 - raw/: Original data from Kaggle
