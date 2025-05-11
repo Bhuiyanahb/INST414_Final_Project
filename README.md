@@ -33,11 +33,11 @@ Process the raw data:
 5. Run Analysis and Generate Visuals
 Use the notebooks in notebooks/ or R scripts in src/visualization/ to:
 
-**Perform EDA
+- **Perform EDA
 
-**Conduct hypothesis testing
+- **Conduct hypothesis testing
 
-**Generate boxplots, histograms, and scatterplots
+- **Generate boxplots, histograms, and scatterplots
 
 ## **Project Structure**
 data/
