@@ -1,152 +1,100 @@
-# INST414_Final_Project
+2. Set Up the Environment
+Ensure you have Python 3.8+ and R (version ≥ 4.0). Install Python dependencies:
 
-# Social Media & Mental Health in Young Adults  
-**Research Question**: Does increased social media usage correlate with higher depressive symptoms?  
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Install R packages: tidyverse, ggplot2, dplyr, broom.
 
-## **Key Findings**  
-- **Pearson Correlation**: `r = 0.102` (p = 0.054), suggesting a weak but near-significant positive relationship.  
-- **Visual Trends**: Histograms show moderate-to-severe depressive symptoms among heavy users (5+ hrs/day).  
-- **Model Performance**: Linear Regression (RMSE=1.32) slightly outperformed Decision Trees (RMSE=1.33).  
+3. Add Raw Data
+Download the dataset (smmh_1.csv) from Kaggle and place it into:
 
-## **Reproduce Results**  
-1. Run data pipeline:  
-   ```bash
-   python src/data/make_dataset.py data/raw/social_health_raw.csv data/processed/clean.csv
+bash
+Copy
+Edit
+data/raw/
+4. Run the Cleaning Script
+Process the raw data:
 
-# Project Structure Overview
+bash
+Copy
+Edit
+python src/data/make_dataset.py data/raw/smmh_1.csv data/processed/clean.csv
+5. Run Analysis and Generate Visuals
+Use the notebooks in notebooks/ or R scripts in src/visualization/ to:
 
-## Directory Structure and Purpose
+Perform EDA
 
-### 1. `data/`
-**Contents**:
-- `raw/`: Original immutable datasets (CSV/Excel from Kaggle, surveys)
-- `interim/`: Partially processed data (cleaned but not final)
-- `processed/`: Final analysis-ready datasets (950 cleaned records)
+Conduct hypothesis testing
 
-**Relationships**:
-- `raw/` → Input for `src/data/make_dataset.py`
-- `interim/` → Used by notebooks for EDA
-- `processed/` → Fed into models and visualizations
+Generate boxplots, histograms, and scatterplots
 
-**Benefits**:
-- Ensures raw data preservation for reproducibility
-- Tracks data transformation stages (IQR cleaning → imputation)
-- Matches the documented cleaning pipeline from the research
+Project Structure
+data/
+raw/: Original data from Kaggle
 
----
+interim/: Cleaned but intermediate data
 
-### 2. `notebooks/`
-**Contents**:
-- Exploratory Data Analysis (EDA) notebooks
-- Hypothesis testing notebooks (Pearson correlation analysis)
-- Model comparison notebooks (Linear vs. Decision Tree)
+processed/: Final dataset used for analysis
 
-**Relationships**:
-- Depends on `data/processed/`
-- Informs code development in `src/`
+notebooks/
+Jupyter and R notebooks for EDA, regression modeling, and visualization
 
-**Benefits**:
-- Keeps experimental code separate from production pipelines
-- Preserves the analysis narrative
-- Allows safe iteration without breaking main scripts
+src/
+data/: Scripts for data loading and cleaning
 
----
+features/: Scripts for feature engineering (e.g., usage tiers)
 
-### 3. `src/` (Core Processing Code)
+models/: Model training and evaluation
 
-#### `data/`
-**Contents**:
-- Data loading/cleaning scripts
-- Train/test split utilities
+visualization/: R scripts for generating publication-ready plots
 
-**Relationships**:
-- Processes `data/raw/` → outputs to `data/interim/` or `processed/`
+reports/
+Final figures, charts, and result tables
 
-**Benefits**:
-- Automates reproducible data cleaning
-- Encapsulates data processing methods
+references/
+Research papers cited in the literature review (PDFs or BibTeX)
 
-#### `features/`
-**Contents**:
-- Feature engineering scripts
-- Normalization/scaling code
+tests/
+Unit tests for cleaning functions and model evaluation
 
-**Relationships**:
-- Transforms `data/processed/` → feeds `models/`
+Analytical Overview
+Cleaned dataset of 950 records from initial 1,000 responses
 
-**Benefits**:
-- Isolates feature logic for maintainability
-- Ensures consistent transformations
+Depression scores measured on a 1–5 Likert scale
 
-#### `models/`
-**Contents**:
-- Model training scripts
-- Evaluation metrics calculation
+Time spent on social media categorized into tiers: 0–2, 2–4, 4–6, 6+ hours
 
-**Relationships**:
-- Uses features → outputs to `reports/figures/`
+Controlled for age, gender, sleep disturbance, and relationship status
 
-**Benefits**:
-- Modular architecture for model comparisons
-- Preserves model implementation details
+Used multiple regression models (linear and logistic) and visualizations to explore trends
 
-#### `visualization/`
-**Contents**:
-- Plot generation scripts
-- Chart customization code
+Theoretical Background
+This research supports:
 
-**Relationships**:
-- Depends on processed data and model outputs
-- Outputs to `reports/figures/`
+Displacement theory: excessive screen time displaces healthy offline behaviors
 
-**Benefits**:
-- Centralized visualization management
-- Automated figure regeneration
+Social comparison theory: passive users are more prone to low self-esteem and depressive symptoms
 
----
+Previous literature, including:
 
-### 4. `reports/`
-**Contents**:
-- Final figures (PNG/PDF)
-- Statistical results tables
+Riehm et al. (2019)
 
-**Relationships**:
-- Receives outputs from visualization and notebooks
+Mir et al. (2020)
 
-**Benefits**:
-- Clean separation of results from code
-- Publication-ready outputs
+Karim et al. (2020)
 
----
+Future Work
+Use longitudinal data for causal analysis
 
-### 5. `references/`
-**Contents**:
-- Cited papers (PDFs)
-- Bibliography files
+Incorporate objective screen-time logs
 
-**Relationships**:
-- Supports all research stages
+Explore machine learning models to detect risky usage patterns
 
-**Benefits**:
-- Centralized literature management
-- Meets academic standards
+Stratify analysis by race, gender, and socioeconomic background
 
----
-
-### 6. `tests/`
-**Contents**:
-- Data cleaning validation tests
-- Feature engineering tests
-
-**Relationships**:
-- Validates `src/` code functionality
-
-**Benefits**:
-- Ensures statistical methods work as intended
-- Catches pipeline errors early
-
-## Workflow
-1. Add raw data to `data/raw/`
-2. Process through `src/data/` scripts
-3. Explore in `notebooks/`
-4. Generate final outputs in `reports/`
+Author
+Arafat Bhuiyan
+INST414 – Spring 2025
+University of Maryland
