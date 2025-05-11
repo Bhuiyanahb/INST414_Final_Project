@@ -42,36 +42,36 @@ Use the notebooks in notebooks/ or R scripts in src/visualization/ to:
 ## **Project Structure**
 ### Directory Structure and Purpose
 1. data/
-####Contents: 
+#### Contents: 
 - raw/: Original data from Kaggle
 - interim/: Cleaned but intermediate data
 - processed/: Final dataset used for analysis
 
-####notebooks/
+#### notebooks/
 - Jupyter and R notebooks for EDA, regression modeling, and visualization
 
-####src/
+#### src/
 - data/: Scripts for data loading and cleaning
 - features/: Scripts for feature engineering (e.g., usage tiers)
 - models/: Model training and evaluation
 - visualization/: R scripts for generating publication-ready plots
 
-####reports/
+#### reports/
 - Final figures, charts, and result tables
 
-####references/
+#### references/
 - Research papers cited in the literature review (PDFs or BibTeX)
 
-####tests/
+#### tests/
 - Unit tests for cleaning functions and model evaluation
 
-###Analytical Overview
+### Analytical Overview
 - Cleaned dataset of 950 records from initial 1,000 responses
 - Depression scores measured on a 1–5 Likert scale
 - Time spent on social media categorized into tiers: 0–2, 2–4, 4–6, 6+ hours
 - Controlled for age, gender, sleep disturbance, and relationship status
 - Used multiple regression models (linear and logistic) and visualizations to explore trends
-###Theoretical Background
+### Theoretical Background
 This research supports:
 - Displacement theory: excessive screen time displaces healthy offline behavior
 - Social comparison theory: passive users are more prone to low self-esteem and depressive symptoms
@@ -79,12 +79,12 @@ This research supports:
 --Riehm et al. (2019)
 --Mir et al. (2020)
 --Karim et al. (2020)
-###Future Work
+### Future Work
 - Use longitudinal data for causal analysis
 - Incorporate objective screen-time logs
 - Explore machine learning models to detect risky usage patterns
 - Stratify analysis by race, gender, and socioeconomic background
-###Author
+### Author
 Arafat Bhuiyan
 INST414 – Spring 2025
 University of Maryland
