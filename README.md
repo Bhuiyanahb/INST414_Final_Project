@@ -20,26 +20,16 @@
 2. Set Up the Environment
 Ensure you have Python 3.8+ and R (version ≥ 4.0). Install Python dependencies:
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Install R packages: tidyverse, ggplot2, dplyr, broom.
+   ```bash
+   pip install -r requirements.txt
+   Install R packages: tidyverse, ggplot2, dplyr, broom.
 
-3. Add Raw Data
-Download the dataset (smmh_1.csv) from Kaggle and place it into:
 
-bash
-Copy
-Edit
-data/raw/
-4. Run the Cleaning Script
+3. Run the Cleaning Script
 Process the raw data:
 
-bash
-Copy
-Edit
-python src/data/make_dataset.py data/raw/smmh_1.csv data/processed/clean.csv
+   ```bash
+   python src/data/make_dataset.py data/raw/smmh_1.csv data/processed/clean.csv
 5. Run Analysis and Generate Visuals
 Use the notebooks in notebooks/ or R scripts in src/visualization/ to:
 
